@@ -29,9 +29,11 @@ class ChatScreenState extends State<ChatScreen> {
     ChatMessage message = new ChatMessage(
       text: text,
     );
-    setState(() {
-      _messages.insert(0, message);
-    });
+    if (text.isNotEmpty) {
+      setState(() {
+        _messages.insert(0, message);
+      });
+    }
   }
 
   @override
