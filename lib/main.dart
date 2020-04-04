@@ -13,12 +13,35 @@ class FriendlyChatApp extends StatelessWidget {
   }
 }
 
-class ChatScreen extends StatelessWidget {
+class ChatScreen extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => new ChatScreenState();
+}
+
+class ChatScreenState extends State<ChatScreen> {
+  final TextEditingController _textController = new TextEditingController();
+
+  void _handleSubmitted(String text) {
+    _textController.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return new Scaffold(
       appBar: new AppBar(title: new Text('FriendlyChat')),
+      body: _buildTextComposer(),
+    );
+  }
+
+  Widget _buildTextComposer() {
+    return new Container(
+      margin: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: new TextField(
+        controller: _textController,
+        onSubmitted: _handleSubmitted,
+        decoration: new InputDecoration.collapsed(hintText: "Send a message"),
+      ),
     );
   }
 }
+
