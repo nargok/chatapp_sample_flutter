@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 const String _name = "Your Name";
+final ThemeData kIOSTheme = new ThemeData(
+  primarySwatch: Colors.orange,
+  primaryColor: Colors.grey[100],
+  primaryColorBrightness: Brightness.light,
+);
+
+final ThemeData kDefaultTheme = new ThemeData(
+  primarySwatch: Colors.purple,
+  accentColor: Colors.orangeAccent[400],
+);
 
 void main() => runApp(FriendlyChatApp());
 
@@ -10,6 +21,9 @@ class FriendlyChatApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'FriendlyChat',
+      theme: defaultTargetPlatform == TargetPlatform.iOS
+        ? kIOSTheme
+        : kDefaultTheme,
       home: ChatScreen(),
     );
   }
@@ -46,7 +60,11 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(title: new Text('FriendlyChat')),
+      appBar: new AppBar(
+        title: new Text('FriendlyChat'),
+        elevation:
+          Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
+      ),
       body: new Column(
         children: <Widget>[
           new Flexible(
