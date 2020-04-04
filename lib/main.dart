@@ -50,7 +50,7 @@ class ChatScreenState extends State<ChatScreen> {
                 itemCount: _messages.length,
               )
           ),
-          new Divider(height: 1.0),
+          new Divider(height: 1.0), // メッセージ間とテキスト入力UIとの間の隙間
           new Container(
             decoration: new BoxDecoration(
               color: Theme.of(context).cardColor,
